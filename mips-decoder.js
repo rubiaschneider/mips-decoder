@@ -25,7 +25,6 @@ class Instruction {
             const dic = MIPSDecoder.OPCODES;
             this.name = id in dic ? dic[id] : "Invalid instruction";
         }
-        // this.mnemonic = getMnemonic(this.fields, this.type);
     }
 
     toString() {
@@ -194,50 +193,15 @@ function myParseInt(numStr) {
     return parseInt(numStr, base);
 }
 
-// function printOutput(instr, signals) {
-//     console.log(`Instrução: ${instr.name}`);
-//     console.log(`- Tipo: ${instr.type}`);
-//     console.log(`- Campos:`);
-//     for (const [field, value] of Object.entries(instr.fields)) {
-//         if (field === 'opcode' && instr.opcode !== 0) {
-//             console.log(`\t${field}: ${value} (${MIPSDecoder.OPCODES[value]})`);
-//         } else if (field === 'funct') {
-//             console.log(`\t${field}: ${value} (${MIPSDecoder.FUNCTIONS[value]})`);
-//         } else if (['rs', 'rt', 'rd'].includes(field)) {
-//             console.log(`\t${field}: ${value} (${MIPSDecoder.REGISTERS[value]})`);
-//         } else {
-//             console.log(`\t${field}: ${value}`);
-//         }
-//     }
-//     console.log(`- Sinais de controle:`);
-//     for (const [signal, value] of Object.entries(signals)) {
-//         console.log(`\t${signal}: ${value}`);
-//     }
-// }
-
 function decodificar() {
     var decoder = new MIPSDecoder()
     var input_value = document.getElementById("entrada").value;
     const instr = decoder.parseInstruction(`${myParseInt(input_value).toString(2).padStart(32, '0')}`);
     const signals = decoder.decodeInstruction(instr);
-    
-    // printOutput(instr, signals);
 
     document.getElementById("resultado").style.display = 'block';
     document.getElementById("tipo").innerHTML = instr.type;
     document.getElementById("bits").innerHTML = instr.bits;
-
-    // for (const [field, value] of Object.entries(instr.fields)) {
-    //     if (field === 'opcode' && instr.opcode !== 0) {
-    //         document.getElementById("opcode").innerHTML = `${value} (${MIPSDecoder.OPCODES[value]})`;
-    //     } else if (field === 'funct') {
-    //         document.getElementById("funct").innerHTML = `${value} (${MIPSDecoder.FUNCTIONS[value]})`;
-    //     } else if (['rs', 'rt', 'rd'].includes(field)) {
-    //         document.getElementById(field).innerHTML = `${value} (${MIPSDecoder.REGISTERS[value]})`;
-    //     } else {
-    //         document.getElementById(field).innerHTML = `${value}`;
-    //     }
-    // }
 
     var campos = document.getElementById("campos");
     campos.replaceChildren();
@@ -254,7 +218,6 @@ function decodificar() {
         var newEl = document.createElement('li');
         newEl.appendChild(document.createTextNode(text));
         campos.appendChild(newEl);
-        // campos.appendChild(document.createElement('li').appendChild(newText));
     }
 
     var sinais = document.getElementById("sinais");
@@ -265,6 +228,5 @@ function decodificar() {
         var newText = document.createTextNode(`${signal}: ${value}`);
         newEl.appendChild(newText);
         sinais.appendChild(newEl);
-        // document.getElementById(signal).innerHTML = `${value}`;
     }
 }
