@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIPS Decoder</title>
+    <link rel="stylesheet" href="estilo.css"> 
+    <script type="text/javascript" src="mips-decoder.js"></script>                        
+</head>
+<body> 
+    <h1>MIPS Decoder</h1>
+    <hr>
+    <p><strong>Decodificador de instruções para a arquitetura MIPS</strong></p>
+    <input id="entrada" type="text" placeholder="Insira a sua instrução aqui">
+    <button onclick="decodificar()"><strong>Decodificar</strong></button>
+    
+    <div id="resultado" style="display: none;">
+        <p><strong>Instrução decodificada</strong></p>
+        <ul>
+            <li>Tipo: <span id="tipo"></span></li><li>Bits: <span id="bits"></span></li>
+        </ul>
+        
+        <p><strong>Campos: </strong></p>
+        <ul id="campos"></ul>
+
+        <p><strong>Sinais de controle: </strong></p>
+        <ul id="sinais"></ul>
+    </div>
+
+</body>
+</html>
